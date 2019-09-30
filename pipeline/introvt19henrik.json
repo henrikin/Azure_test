@@ -1,0 +1,116 @@
+{
+	"name": "introvt19henrik",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Data",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink",
+						"tableOption": "autoCreate"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "team_id",
+									"type": "String"
+								},
+								"sink": {
+									"name": "team_id",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "franchiseId",
+									"type": "String"
+								},
+								"sink": {
+									"name": "franchiseId",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "shortName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "shortName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "teamName",
+									"type": "String"
+								},
+								"sink": {
+									"name": "teamName",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "abbreviation",
+									"type": "String"
+								},
+								"sink": {
+									"name": "abbreviation",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "link",
+									"type": "String"
+								},
+								"sink": {
+									"name": "link",
+									"type": "String"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "team_info",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
